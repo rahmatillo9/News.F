@@ -32,7 +32,7 @@ const NewsList = () => {
           <img
             src={article.imageUrl}
             alt={article.title}
-            className="w-full h-48 object-cover"
+            className="w-full h-90 object-cover"
           />
           <div className="p-6">
             <h2 className="text-xl font-bold text-gray-800">{article.title}</h2>

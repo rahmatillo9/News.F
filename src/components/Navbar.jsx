@@ -20,11 +20,10 @@ export function Navbar() {
             <span className="ml-2 text-lg font-bold">News</span>
           </Link>
 
-
-          <Link to="/newCr">
+          <Link to="/newCr" className="mt-4 sm:mt-0 sm:ml-4 ">
             <button
               type="button"
-              className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5"
+              className="  text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5"
             >
               Maqola qo‘shish +
             </button>
@@ -51,10 +50,76 @@ export function Navbar() {
                 Login
               </button>
             </Link>
+            
+            <button
+            type="button"
+            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom"
+          >
+            <span className="sr-only">Open user menu</span>
+            <img
+              className="w-8 h-8 rounded-full"
+              src="https://icons8.com/icon/23265/user"
+              alt="userPhoto"
+            />
+          </button>
+          <div
+            className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="user-dropdown"
+          >
+            <div className="px-4 py-3">
+              <span className="block text-sm text-gray-900 dark:text-white">
+                Bonnie Green
+              </span>
+              <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
+                name@flowbite.com
+              </span>
+            </div>
+            <ul className="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Earnings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </li>
+            </ul>
+          </div>
+        
+      
           </nav>
+
         </div>
 
-        {/* Mobile Navigation */}
+
         <nav className="fixed z-50 bottom-0 left-0 w-full bg-blue-700 text-white flex items-center justify-around px-4 py-3 md:hidden shadow-md">
           {["Uzb", "Jxn", "Spt"].map((category, index) => (
             <button
@@ -90,10 +155,10 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Footer Divider */}
+
         <Footer.Divider className="my-6 border-gray-400" />
 
-        {/* Footer Copyright */}
+
         <Footer.Copyright
           href="/"
           by="News™"

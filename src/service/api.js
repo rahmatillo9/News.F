@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "http://13.60.255.246:4000";
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -48,7 +48,7 @@ const API_URL = "/auth";
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post(`${API_URL}/login`, { email, password });
-    return response.data; // { access_token: "..." }
+    return response.data; 
   } catch (error) {
     const message = error.response?.data?.message || "Login failed";
     console.error("Login Error:", message);
