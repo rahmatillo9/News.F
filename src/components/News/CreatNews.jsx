@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-
+import {jwtDecode} from "jwt-decode"; 
+import { useNavigate } from "react-router-dom";
 
 const CreateMaqola = () => {
   const [title, setTitle] = useState("");
-  const [description, setdescription] = useState("");
+  const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [category, setCategory] = useState("");
-  const [authorId, setAuthorId] = useState(null); 
+  const [category, setCategory] = useState(""); 
+  const [authorId, setAuthorId] = useState(null);
   const [error, setError] = useState("");
-
-
+  const navigate = useNavigate()
   useEffect(() => {
-    const token = localStorage.getItem("token"); 
+    const token = localStorage.getItem("token");
     if (token) {
       try {
-        const decoded = jwtDecode(token); 
-        setAuthorId(decoded.userId);
+        const decoded = jwtDecode(token);
+        if (decoded && decoded.id) {
+          setAuthorId(decoded.id);
+        } else {
+          setError("Token invalid or missing userId.");
+        }
       } catch (err) {
         console.error("Invalid token:", err);
+        setError("Invalid token. Please log in again.");
       }
+    } else {
+      setError("Token not found. Please log in.");
     }
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !description || !category) {
+    if (!title || !description || !category) { 
       setError("Title, description, and category are required!");
       return;
     }
@@ -49,21 +55,23 @@ const CreateMaqola = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`, 
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
 
       if (response.status === 201) {
         setTitle("");
-        setdescription("");
+        setDescription("");
         setImageUrl("");
-        setCategory("");
+        setCategory(""); 
         setError("");
 
         alert("Article created successfully");
+        navigate("/");
       }
     } catch (err) {
+      console.error(err);
       setError("An error occurred while creating the article.");
     }
   };
@@ -90,13 +98,13 @@ const CreateMaqola = () => {
 
         <div className="mb-4">
           <label className="block mb-2" htmlFor="description">
-            description
+            Description
           </label>
           <textarea
             id="description"
             className="w-full p-2 border rounded"
             value={description}
-            onChange={(e) => setdescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)} 
           ></textarea>
         </div>
 
@@ -120,8 +128,11 @@ const CreateMaqola = () => {
           <select
             id="category"
             className="w-full p-2 border rounded"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={category} // To'g'ri nom ishlatilmoqda
+            onChange={(e) => {
+              console.log("Category changed to:", e.target.value); 
+              setCategory(e.target.value); 
+            }}
           >
             <option value="" disabled>
               Select a category

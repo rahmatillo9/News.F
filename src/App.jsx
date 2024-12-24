@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import Footer from './components/Footer';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Uzbek from './pages/Uzbek';
 import Jahon from './pages/Jahon';
@@ -13,6 +13,16 @@ import Sign from './Login/Sign';
 import CreateMaqola from './components/News/CreatNews';
 
 const App = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+   
+    if (!token) {
+      console.log("Token not found, redirecting to login...");
+      navigate("/login"); 
+    }
+  }, [navigate]);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
  

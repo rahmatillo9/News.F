@@ -11,7 +11,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/"); // Faqat token mavjud bo‘lsa, redirect qilinadi
+      navigate("/"); 
     }
   }, [navigate]);
 
