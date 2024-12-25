@@ -145,14 +145,7 @@ export function Navbar() {
               </span>
             </button>
           ))}
-          <Link to="/contacts" className="flex flex-col items-center">
-            <img
-              className="w-6 h-6 transition-transform duration-200 hover:scale-110"
-              src="https://th.bing.com/th?id=OIP.q4v-Bk7VpV8UNypwm2NAfAHaFW&w=293&h=212&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
-              alt="Contacts"
-            />
-            <span className="text-xs">Contact</span>
-          </Link>
+      
         </nav>
 
 

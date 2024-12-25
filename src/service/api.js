@@ -55,3 +55,17 @@ export const loginUser = async (email, password) => {
     throw message;
   }
 };
+
+
+
+export const ArticleDelete = async (NewsId) => {
+  try {
+    const response = await axios.delete(`/News/${NewsId}`);
+    if (response.status === 200) {
+      alert('Article deleted successfully');
+    }
+  } catch (err) {
+    console.error('An error occurred while deleting the article:', err);
+    alert('Failed to delete the article');
+  }
+};
